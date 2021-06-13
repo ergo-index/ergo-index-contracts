@@ -1,38 +1,23 @@
 package contracts
 
-/*import org.ergoplatform.playground.{Box, R5, Transaction}
-import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
-import org.ergoplatform.compiler.ErgoScalaCompiler._
-import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
-import org.ergoplatform.playground._
-import org.ergoplatform.Pay2SAddress
-import org.ergoplatform.playgroundenv.models.BlockchainSimulation
-import sigmastate.eval.Extensions._
-import scorex.crypto.hash.Blake2b256
-//import scala.collection.mutable.Map
-import scala.language.postfixOps
-import sigmastate.eval.SigmaDsl
-
+/**
+ * Sell Token Tx: Sells a token that is tracked in the core state's R7 and creates a new UTXO that is
+ * spendable by the fund (i.e., the core state UTXO)
+ * <ul>
+ *   <li>
+ *     INPUTS(0): The core state UTXO
+ *   </li>
+ *   <li>
+ *     INPUTS(1): The UTXO of a token that the fund owns (and is consequentially stored in R7)
+ *   </li>
+ *   <li>
+ *     OUTPUTS(0): The core state UTXO with an updated R5 to reflect which investors' Ergs were
+ *     moved back into the core state UTXO, as well as an updated R7 to reflect the fact that one less UTXO
+ *     is now spendable by the fund.
+ *   </li>
+ * </ul>
+ */
 object SellTokenContract {
-  def run(blockchainSim: BlockchainSimulation): Unit = {
-    ///////////////////////////////////////////////////////////////////////////////////
-    // Sell Token Transaction //
-    ///////////////////////////////////////////////////////////////////////////////////
-    // Every created "sell token" box has 1 input box (the pooled fund box) and produces 1 output box (both being the recursed pooled-fund box)
-
-    // sellTokenScript will prevent a purchased token's box from being spent unless the following are true:
-    //     1) Ring signature provided, and many, many more
-    //     2) Input's guard script == Output(1)'s propositionBytes
-    //     3) Output(0)'s array of hashes (aka R7.length) is 1 less than Input(0)'s array of hashes <- not sure if entirely possible to check
-    //     4) The hash of the token sold !isDefined in Output(0)'s array of hashes
-    val sellTokenScript =
-    s"""
-  {
-  pkFounder
+  def run() = {
   }
-  """.stripMargin
-
-    val sellTokenContract = ErgoScriptCompiler.compile(Map("pkFounder" -> fundFounderAddress.pubKey), sellTokenScript)
-
-  }
-}*/
+}

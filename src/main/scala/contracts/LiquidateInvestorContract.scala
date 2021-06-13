@@ -1,37 +1,28 @@
 package contracts
 
-import org.ergoplatform.playground.{Box, R5, Transaction}
-import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
-import org.ergoplatform.compiler.ErgoScalaCompiler._
-import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
-import org.ergoplatform.playground._
-import org.ergoplatform.Pay2SAddress
-import org.ergoplatform.playgroundenv.models.BlockchainSimulation
-import sigmastate.eval.Extensions._
-import scorex.crypto.hash.Blake2b256
-//import scala.collection.mutable.Map
-import scala.language.postfixOps
-import sigmastate.eval.SigmaDsl
-
+/**
+ * Investor Liquidates Tx: Returns funds to an investor (up to the full value of his/her shares),
+ * spending some of the fund's invested tokens if necessary
+ * <ul>
+ *   <li>
+ *     INPUTS(0): The core state UTXO
+ *   </li>
+ *   <li>
+ *     INPUTS(1)-INPUTS(N): The UTXOs of tokens that the fund owns (and are consequentially stored in R7).
+ *     R7 must show that each token is at least partially owned by the investor.
+ *   </li>
+ *   <li>
+ *     OUTPUTS(0): The core state UTXO with updated R5 and R7 to reflect the investor's updated shares, as well
+ *     as the fund's new amount of tokens if the Tx needed to spend some. If the investor was only partially
+ *     in some of the tokens, then the change will go back into the fund to be invested in more tokens in
+ *     a future Buy Token Tx, and R5 will reflect this
+ *   </li>
+ *   <li>
+ *     OUTPUTS(1): A UTXO with the value that the investor liquidated
+ *   </li>
+ * </ul>
+ */
 object LiquidateInvestorContract {
-  def run(blockchainSim: BlockchainSimulation): Unit = {
-    ///////////////////////////////////////////////////////////////////////////////////
-    // Liquidate Investor Transaction //
-    ///////////////////////////////////////////////////////////////////////////////////
-    // Every created "liqInvestor" UTXO has 1 input box (a random UTXO from the fundFounder) and produces 2 output boxes (one being investor N's fund box & the other the recursed pooled-fund box)
-
-    // liqInvestorScript will prevent the pooled fund box from being spent unless the following are true:
-    //     1) Ring signature provided
-    //     2) new Nav = old NAV - oldInvestor's balance
-    //     3) new investor array length = old investor array length - 1
-    val liqInvestorScript =
-    s"""
-  {
-  1
-  }
-  """.stripMargin
-
-    val liqInvestorContract = ErgoScriptCompiler.compile(Map(), liqInvestorScript)
-
+  def run() = {
   }
 }

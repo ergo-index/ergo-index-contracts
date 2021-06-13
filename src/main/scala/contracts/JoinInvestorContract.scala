@@ -1,37 +1,24 @@
 package contracts
 
-import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
-import org.ergoplatform.playgroundenv.models.BlockchainSimulation
-import scala.language.postfixOps
-
+/**
+ * Investor Joins Tx: Accepts a new investor into the fund, increasing the pool of UTXOs spendable
+ * by the core state UTXO
+ * <ul>
+ *   <li>
+ *     INPUTS(0): The core state UTXO
+ *   </li>
+ *   <li>
+ *     INPUTS(1)-INPUTS(N): Any number of UTXOs belonging to the new investor
+ *   </li>
+ *   <li>
+ *     OUTPUTS(0): The core state UTXO with an updated R5 to reflect the new investor's shares.
+ *   </li>
+ *   <li>
+ *     OUTPUTS(1)-OUTPUTS(N): Any change UTXOs for the new investor
+ *   </li>
+ * </ul>
+ */
 object JoinInvestorContract {
-  def run(blockchainSim: BlockchainSimulation): Unit = {
-    ///////////////////////////////////////////////////////////////////////////////////
-    // Investor Join Transaction //
-    ///////////////////////////////////////////////////////////////////////////////////
-    // Every created "investorJoin Tx" box has 1 input box and produces 1 output boxes (both the pooled fund box)
-    // Website would provide investor's public key & balance
-    // TODO: Before doing investor join we need to create the index and send it to the simulated blockchain
-
-    // joinInvestorScript will lock the pooled fund box from being spent unless the following are true:
-    //     1) Ring signature provided *(maybe not needed if other investors' permission not need AND/OR new investor can't provide signature yet)
-    //     2) new NAV = old NAV + newInvestor's balance
-    //     3) new investor array length = old investor array + 1
-    val joinInvestorScript =
-    s"""
-  {
-  1
-  }
-  """.stripMargin
-
-    val joinInvestorContract = ErgoScriptCompiler.compile(Map(), joinInvestorScript)
-
-    /*val investorJoinsTransaction = Transaction (
-          inputs       = fundAssetsBox,
-          outputs      = List(fundAssetsBox),
-          fee          = MinTxFee,
-          sendChangeTo = address1
-    )*/
-
+  def run() = {
   }
 }

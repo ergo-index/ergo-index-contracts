@@ -2,12 +2,26 @@ package contracts
 
 import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
 import org.ergoplatform.playground._
-import org.ergoplatform.{ErgoBox, ErgoBoxCandidate, Pay2SAddress}
+import org.ergoplatform.ErgoBox
 
 import scala.language.postfixOps
 import org.ergoplatform.playgroundenv.models.BlockchainSimulation
-import sigmastate.eval.SigmaDsl
 
+/**
+ * Transaction to create a new index or mutual fund. <br /><br />
+ * <ul>
+ *   <li>
+ *     INPUTS(0)-INPUTS(N): Any number of UTXOs guarded by the fund creator's public key
+ *   </li>
+ *   <li>
+ *     OUTPUTS(0): The core state UTXO with portfolio configuration information populated in its registers, as
+ *     well as an initial investment for the fund
+ *   </li>
+ *   <li>
+ *     OUTPUTS(1)-OUTPUTS(N): Any change UTXOs for the fund owner
+ *   </li>
+ * </ul>
+ */
 object CreateFundContract {
 
   /**
@@ -23,37 +37,22 @@ object CreateFundContract {
 
     val fundFounderBal = 200000000000L
     val fundFounderAddress = fundFounder.wallet.getAddress
-    val rawA = SigmaDsl.GroupElement(fundFounderAddress.proveDlog.value)
     fundFounder.generateUnspentBoxes(toSpend = fundFounderBal) // generating unspent UTXO boxes
 
-    ///////////////////////////////////////////////////////////////////////////////////
-    // Create Index Transaction //
-    ///////////////////////////////////////////////////////////////////////////////////
-    // Every created "create index" UTXO has 1 input box (a random UTXO from the fundFounder) and produces 1 output box (fundAssetsBox)
-
-    // This transaction creates the uniquely-identifiable fund, loads it with the founder's funds and sends it to the blockchain!
-
-    // fundingScript will lock the pooled fund box from being spent unless the following are true:
-    //     1) Ring signature provided
-    //     2) The guard script held in Output(1) isDefined in R8
-    //     3) That the investor's funds have already been subtracted/added in the Output by comparing the investor's balance in both the input & output
-    //     4) If the output's guard script == "buy" then Output(1).value == (NAV / R6["Token"].targetNAV) * 100
-    //     5) If the output's guard script == "buy" || "sell" then:
-    //        a) Check that the target buy/sell price is within 1% of the target buy/sell price
-    val x = 4
+    // This is a placeholder for the script guarding the core state UTXO.
+    // See CoreStateGuard.scala for pseudocode of what it would actually look like
     val fundingScript =
       s"""
-  {
-  1
-  }
-""".stripMargin
+          {
+            1
+          }
+          """.stripMargin
     val fundingContract = ErgoScriptCompiler.compile(Map(), fundingScript)
     val fundAssetsBox = Box(value = fundFounderBal - MinTxFee,
-      register = R4 -> 1, // R4 -> nft, R5 -> pks, R6 -> tokensData, R7 -> utxos, R8 -> guardScripts
+      // See Registers.scala for information on what data goes into each register
+      //registers: R4 -> nft, R5 -> mapOfInvestorPksToAmtInvested, R6 -> tokensData, R7 -> tokenBoxHashes, R8 -> guardScripts
       script = fundingContract
     )
-
-    println(fundAssetsBox)
 
     val createIndexTx = Transaction(
       inputs = fundFounder.selectUnspentBoxes(toSpend = fundFounderBal - MinTxFee),
@@ -63,14 +62,9 @@ object CreateFundContract {
     )
 
     val createIndexTxSigned = fundFounder.wallet.sign(createIndexTx)
-    //println(createIndexTxSigned.outputs(0))
     blockchainSim.send(createIndexTxSigned)
     fundFounder.printUnspentAssets()
-    //println(fundAssetsBox.get(R4))
 
-    println(createIndexTxSigned.outputs(0))
-    println("ENDING CREATE INDEX TX")
-    println(createIndexTxSigned.outputs(0).additionalRegisters)
     createIndexTxSigned.outputs(0)
   }
 }
