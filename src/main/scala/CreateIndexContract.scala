@@ -32,7 +32,7 @@ object CreateIndexContract {
     //        a) Check that the target buy/sell price is within 1% of the target buy/sell price
     val x = 4
     val fundingScript =
-    s"""
+      s"""
   {
   1
   }
