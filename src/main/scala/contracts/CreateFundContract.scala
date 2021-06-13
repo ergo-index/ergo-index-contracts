@@ -8,11 +8,19 @@ import scala.language.postfixOps
 import org.ergoplatform.playgroundenv.models.BlockchainSimulation
 import sigmastate.eval.SigmaDsl
 
-object CreateIndexContract {
-  def run(blockchainSim: BlockchainSimulation): ErgoBox = {
-    println("STARTING CREATE INDEX TX")
+object CreateFundContract {
 
-    val fundFounder = blockchainSim.newParty("fundFounder") // fundFounder's wallet would, in theory, be initialized before the fund's creation
+  /**
+   * Simulates a fund manager creating an index or mutual fund.
+   * @param fundFounder the person who is creating the fund. Only this person will be able to modify its portfolio
+   * @param blockchainSim the simulation to run in
+   * @return the core state UTXO
+   */
+  def run(fundFounder: Party, blockchainSim: BlockchainSimulation): ErgoBox = {
+    println("==================================================")
+    println("=== RUNNING TX: CREATE INDEX ===")
+    println("==================================================")
+
     val fundFounderBal = 200000000000L
     val fundFounderAddress = fundFounder.wallet.getAddress
     val rawA = SigmaDsl.GroupElement(fundFounderAddress.proveDlog.value)

@@ -1,4 +1,4 @@
-import contracts.CreateIndexContract
+import contracts.CreateFundContract
 import org.ergoplatform.playground._
 import org.ergoplatform.playgroundenv.models.TokenInfo
 
@@ -132,8 +132,12 @@ import scala.language.postfixOps
 object Main {
   def main(args: Array[String]): Unit = {
 
-    // Create a simulated blockchain (aka "Mockchain")
+    // Create a simulated blockchain (aka "Mockchain") with an owner and an investor
     val blockchainSim = newBlockChainSimulationScenario("Ergo Index")
+    val fundFounder = blockchainSim.newParty("fundFounder")
+
+    // Simulate the fund owner creating the fund, which will generate the core state UTXO (this only happens once)
+    CreateFundContract.run(fundFounder, blockchainSim)
 
     // Class that holds all fund data/info & passes object around classes.
     // Attempting to pass solely the info each box needs to verify transactions
@@ -168,7 +172,7 @@ object Main {
 
 
     //Initiating the CreateIndexContract with the fund's founder
-    val fundAssetsBox = CreateIndexContract.run(blockchainSim)
+    val fundAssetsBox = CreateFundContract.run(blockchainSim)
 
     //BuyTokenContract.run(blockchainSim, fundAssetsBox)
 
