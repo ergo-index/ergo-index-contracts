@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="sbt: org.ergoplatform:ergo-wallet_2.12:appkit-wallet-f7f7d673-SNAPSHOT:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Library/Caches/Coursier/v1/https/oss.sonatype.org/content/repositories/snapshots/org/ergoplatform/ergo-wallet_2.12/appkit-wallet-f7f7d673-SNAPSHOT/ergo-wallet_2.12-appkit-wallet-f7f7d673-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/Library/Caches/Coursier/v1/https/oss.sonatype.org/content/repositories/snapshots/org/ergoplatform/ergo-wallet_2.12/appkit-wallet-f7f7d673-SNAPSHOT/ergo-wallet_2.12-appkit-wallet-f7f7d673-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Library/Caches/Coursier/v1/https/oss.sonatype.org/content/repositories/snapshots/org/ergoplatform/ergo-wallet_2.12/appkit-wallet-f7f7d673-SNAPSHOT/ergo-wallet_2.12-appkit-wallet-f7f7d673-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

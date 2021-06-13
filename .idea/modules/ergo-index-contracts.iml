@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id="ergo-index-contracts [file:/Users/ryanlavin/repositories/ergo-index-contracts/]" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_15">
+    <output url="file://$MODULE_DIR$/../../target/scala-2.12/classes" />
+    <output-test url="file://$MODULE_DIR$/../../target/scala-2.12/test-classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../..">
+      <sourceFolder url="file://$MODULE_DIR$/../../src/main/scala" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/../../target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="sbt: com.chuusai:shapeless_2.12:2.3.3:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.google.code.findbugs:jsr305:3.0.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.google.code.gson:gson:2.8.5:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.google.guava:guava:21.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.google.protobuf:protobuf-java:3.5.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.lihaoyi:fansi_2.12:0.2.5:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.lihaoyi:fastparse-utils_2.12:1.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.lihaoyi:fastparse_2.12:1.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.lihaoyi:pprint_2.12:0.5.3:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.lihaoyi:sourcecode_2.12:0.1.4:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.squareup.okhttp3:okhttp:3.12.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.squareup.okio:okio:1.15.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.squareup.retrofit2:converter-gson:2.6.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.squareup.retrofit2:converter-scalars:2.6.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.squareup.retrofit2:retrofit:2.6.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.thesamet.scalapb:lenses_2.12:0.8.0-RC1:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.thesamet.scalapb:scalapb-runtime_2.12:0.8.0-RC1:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.typesafe.scala-logging:scala-logging_2.12:3.9.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: commons-io:commons-io:2.5:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.circe:circe-core_2.12:0.10.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.circe:circe-generic_2.12:0.10.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.circe:circe-jawn_2.12:0.10.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.circe:circe-numbers_2.12:0.10.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.circe:circe-parser_2.12:0.10.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.gsonfire:gson-fire:1.8.3:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.swagger.core.v3:swagger-annotations:2.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: jline:jline:2.14.3:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.bitbucket.inkytonik.dsinfo:dsinfo_2.12:0.4.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.bitbucket.inkytonik.dsprofile:dsprofile_2.12:0.4.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.bitbucket.inkytonik.kiama:kiama_2.12:2.1.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.bouncycastle:bcprov-jdk15on:1.64:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.ergoplatform:ergo-appkit_2.12:develop-d77acfb8-SNAPSHOT:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.ergoplatform:ergo-playground-env_2.12:0.0.0-76-0fd15a64-SNAPSHOT:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.ergoplatform:ergo-scala-compiler_2.12:0.0.0-32-aaadbee1-SNAPSHOT:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.ergoplatform:ergo-wallet_2.12:appkit-wallet-f7f7d673-SNAPSHOT:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.rogach:scallop_2.12:2.1.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.rudogma:supertagged_2.12:1.4:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scala-lang:scala-library:2.12.14:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scala-lang:scala-reflect:2.12.14:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalameta:common_2.12:4.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalameta:dialects_2.12:4.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalameta:inputs_2.12:4.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalameta:io_2.12:4.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalameta:parsers_2.12:4.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalameta:quasiquotes_2.12:4.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalameta:scalameta_2.12:4.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalameta:semanticdb_2.12:4.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalameta:tokenizers_2.12:4.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalameta:tokens_2.12:4.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalameta:transversers_2.12:4.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scalameta:trees_2.12:4.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scodec:scodec-bits_2.12:1.1.6:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scorexfoundation:scorex-util_2.12:0.1.6:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scorexfoundation:scrypto_2.12:2.1.7:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scorexfoundation:sigma-dsl-compiler-macros_2.12:i609-formal-verification-346717a7-SNAPSHOT:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scorexfoundation:sigma-state_2.12:3.1.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scorexfoundation:verified-contracts_2.12:i609-formal-verification-346717a7-SNAPSHOT:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.slf4j:slf4j-api:1.7.25:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.spire-math:debox_2.12:0.8.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.spire-math:jawn-parser_2.12:0.13.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:algebra_2.12:0.7.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-core_2.12:1.4.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-kernel_2.12:1.4.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-macros_2.12:1.4.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:machinist_2.12:0.6.5:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:macro-compat_2.12:1.1.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:spire-macros_2.12:0.14.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:spire_2.12:0.14.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.whispersystems:curve25519-java:0.5.0:jar" level="project" />
+  </component>
+</module>

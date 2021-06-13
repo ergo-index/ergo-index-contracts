@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="sbt: org.scorexfoundation:sigma-dsl-compiler-macros_2.12:i609-formal-verification-346717a7-SNAPSHOT:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Library/Caches/Coursier/v1/https/oss.sonatype.org/content/repositories/snapshots/org/scorexfoundation/sigma-dsl-compiler-macros_2.12/i609-formal-verification-346717a7-SNAPSHOT/sigma-dsl-compiler-macros_2.12-i609-formal-verification-346717a7-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/Library/Caches/Coursier/v1/https/oss.sonatype.org/content/repositories/snapshots/org/scorexfoundation/sigma-dsl-compiler-macros_2.12/i609-formal-verification-346717a7-SNAPSHOT/sigma-dsl-compiler-macros_2.12-i609-formal-verification-346717a7-SNAPSHOT-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Library/Caches/Coursier/v1/https/oss.sonatype.org/content/repositories/snapshots/org/scorexfoundation/sigma-dsl-compiler-macros_2.12/i609-formal-verification-346717a7-SNAPSHOT/sigma-dsl-compiler-macros_2.12-i609-formal-verification-346717a7-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
