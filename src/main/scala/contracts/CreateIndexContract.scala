@@ -1,3 +1,5 @@
+package contracts
+
 import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
 import org.ergoplatform.playground._
 import org.ergoplatform.{ErgoBox, ErgoBoxCandidate, Pay2SAddress}

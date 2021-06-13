@@ -1,6 +1,7 @@
-import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
+package contracts
+
 import org.ergoplatform.playgroundenv.models.BlockchainSimulation
-import scala.language.postfixOps
+import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
 
 object UpdateSettingsContract {
   def run(blockchainSim: BlockchainSimulation): Unit = {

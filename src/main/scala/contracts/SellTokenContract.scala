@@ -1,3 +1,5 @@
+package contracts
+
 /*import org.ergoplatform.playground.{Box, R5, Transaction}
 import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
 import org.ergoplatform.compiler.ErgoScalaCompiler._

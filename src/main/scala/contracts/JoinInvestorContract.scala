@@ -1,3 +1,5 @@
+package contracts
+
 import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
 import org.ergoplatform.playgroundenv.models.BlockchainSimulation
 import scala.language.postfixOps

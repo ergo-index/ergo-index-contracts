@@ -1,5 +1,7 @@
+import contracts.CreateIndexContract
 import org.ergoplatform.playground._
 import org.ergoplatform.playgroundenv.models.TokenInfo
+
 import scala.language.postfixOps
 
 /**

@@ -1,3 +1,5 @@
+package contracts
+
 import org.ergoplatform.playground.{Box, R5, Transaction}
 import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
 import org.ergoplatform.compiler.ErgoScalaCompiler._
@@ -11,7 +13,7 @@ import scorex.crypto.hash.Blake2b256
 import scala.language.postfixOps
 import sigmastate.eval.SigmaDsl
 
-object LiqInvestorContract {
+object LiquidateInvestorContract {
   def run(blockchainSim: BlockchainSimulation): Unit = {
     ///////////////////////////////////////////////////////////////////////////////////
     // Liquidate Investor Transaction //
