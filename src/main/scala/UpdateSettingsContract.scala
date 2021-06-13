@@ -1,18 +1,9 @@
-import org.ergoplatform.playground.{Box, R5, Transaction}
 import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
-
-import org.ergoplatform.compiler.ErgoScalaCompiler._
-import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
-import org.ergoplatform.playground._
-import org.ergoplatform.Pay2SAddress
-import sigmastate.eval.Extensions._
-import scorex.crypto.hash.{Blake2b256}
-//import scala.collection.mutable.Map
+import org.ergoplatform.playgroundenv.models.BlockchainSimulation
 import scala.language.postfixOps
-import sigmastate.eval.SigmaDsl
 
 object UpdateSettingsContract {
-  def run(): Unit = {
+  def run(blockchainSim: BlockchainSimulation): Unit = {
     ///////////////////////////////////////////////////////////////////////////////////
     // Update Settings Transaction //
     ///////////////////////////////////////////////////////////////////////////////////

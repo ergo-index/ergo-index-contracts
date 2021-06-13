@@ -1,15 +1,26 @@
-import org.ergoplatform.playground.{Box, Transaction}
 import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
+import org.ergoplatform.playground._
+import org.ergoplatform.{ErgoBoxCandidate, Pay2SAddress}
+import scala.language.postfixOps
+import org.ergoplatform.playgroundenv.models.BlockchainSimulation
+
+import Main.Main
 
 object CreateIndexContract {
-  def run(): Unit = {
+  def run(blockchainSim: BlockchainSimulation, fundInfo: fundInfo): ErgoBoxCandidate = {
+    println("STARTING CREATE INDEX TX")
+
+    val fundFounder = blockchainSim.newParty("fundFounder") // fundFounder's wallet would, in theory, be initialized before the fund's creation
+    val fundFounderBal = 200000000000L
+    val fundFounderAddress = fundFounder.wallet.getAddress
+    fundFounder.generateUnspentBoxes(toSpend = fundFounderBal) // generating unspent UTXO boxes
+
     ///////////////////////////////////////////////////////////////////////////////////
     // Create Index Transaction //
     ///////////////////////////////////////////////////////////////////////////////////
     // Every created "create index" UTXO has 1 input box (a random UTXO from the fundFounder) and produces 1 output box (fundAssetsBox)
 
     // This transaction creates the uniquely-identifiable fund, loads it with the founder's funds and sends it to the blockchain!
-    println("STARTING CREATE INDEX TX")
 
     // fundingScript will lock the pooled fund box from being spent unless the following are true:
     //     1) Ring signature provided
@@ -21,7 +32,7 @@ object CreateIndexContract {
     val fundingScript =
     s"""
   {
-     OUTPUTS(1).propositionBytes
+  1
   }
 """.stripMargin
 
@@ -43,5 +54,7 @@ object CreateIndexContract {
     blockchainSim.send(createIndexTxSigned)
     fundFounder.printUnspentAssets()
 
+    println("ENDING CREATE INDEX TX")
+    fundAssetsBox
   }
 }

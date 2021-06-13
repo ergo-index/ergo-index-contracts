@@ -1,18 +1,18 @@
-import org.ergoplatform.playground.{Box, R5, Transaction}
+/*import org.ergoplatform.playground.{Box, R5, Transaction}
 import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
-
 import org.ergoplatform.compiler.ErgoScalaCompiler._
 import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
 import org.ergoplatform.playground._
 import org.ergoplatform.Pay2SAddress
+import org.ergoplatform.playgroundenv.models.BlockchainSimulation
 import sigmastate.eval.Extensions._
-import scorex.crypto.hash.{Blake2b256}
+import scorex.crypto.hash.Blake2b256
 //import scala.collection.mutable.Map
 import scala.language.postfixOps
 import sigmastate.eval.SigmaDsl
 
 object BuyTokenContract {
-  def run(): Unit = {
+  def run(blockchainSim: BlockchainSimulation): Unit = {
     ///////////////////////////////////////////////////////////////////////////////////
     // Buy Token Transaction //
     ///////////////////////////////////////////////////////////////////////////////////
@@ -24,11 +24,12 @@ object BuyTokenContract {
     val buyTokenScript =
     s"""
   {
-  OUTPUTS(1).propositionBytes == founderPk.propBytes
+  1
   }
   """.stripMargin
 
-    val buyTokenContract = ErgoScriptCompiler.compile(Map("founderPk" -> fundFounderAddress.pubKey), buyTokenScript)
+    //val buyTokenContract = ErgoScriptCompiler.compile(Map("founderPk" -> fundFounderAddress.pubKey), buyTokenScript)
+    val buyTokenContract = ErgoScriptCompiler.compile(Map(), buyTokenScript)
 
 
     val tokenPrice: Long = 10000000 / 2
@@ -51,9 +52,9 @@ object BuyTokenContract {
 }*/
 
     println("-----------")
-    fundFounder.printUnspentAssets()
+    //fundFounder.printUnspentAssets()
 
-    var immutableMap: Map[org.ergoplatform.playgroundenv.models.Address, Long] = Map(fundFounderAddress -> fundFounderBal, address1 -> 100000000L, address2 -> 200000000L)
+    //var immutableMap: Map[org.ergoplatform.playgroundenv.models.Address, Long] = Map(fundFounderAddress -> fundFounderBal, address1 -> 100000000L, address2 -> 200000000L)
 
     def getNAV(immutableMap: Map[org.ergoplatform.playgroundenv.models.Address, Long]): Long = {
       val nav: Long = 0L
@@ -87,4 +88,4 @@ object BuyTokenContract {
     println("-----------")
 
   }
-}
+}*/

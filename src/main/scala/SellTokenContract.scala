@@ -1,18 +1,18 @@
-import org.ergoplatform.playground.{Box, R5, Transaction}
+/*import org.ergoplatform.playground.{Box, R5, Transaction}
 import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
-
 import org.ergoplatform.compiler.ErgoScalaCompiler._
 import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
 import org.ergoplatform.playground._
 import org.ergoplatform.Pay2SAddress
+import org.ergoplatform.playgroundenv.models.BlockchainSimulation
 import sigmastate.eval.Extensions._
-import scorex.crypto.hash.{Blake2b256}
+import scorex.crypto.hash.Blake2b256
 //import scala.collection.mutable.Map
 import scala.language.postfixOps
 import sigmastate.eval.SigmaDsl
 
 object SellTokenContract {
-  def run(): Unit = {
+  def run(blockchainSim: BlockchainSimulation): Unit = {
     ///////////////////////////////////////////////////////////////////////////////////
     // Sell Token Transaction //
     ///////////////////////////////////////////////////////////////////////////////////
@@ -33,4 +33,4 @@ object SellTokenContract {
     val sellTokenContract = ErgoScriptCompiler.compile(Map("pkFounder" -> fundFounderAddress.pubKey), sellTokenScript)
 
   }
-}
+}*/
