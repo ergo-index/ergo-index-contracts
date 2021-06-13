@@ -1,5 +1,3 @@
-package Main
-
 import org.ergoplatform.playground._
 import org.ergoplatform.playgroundenv.models.TokenInfo
 import scala.language.postfixOps
@@ -43,7 +41,9 @@ object Main {
 
 
     //Initiating the CreateIndexContract with the fund's founder
-    val fundAssetsBox = CreateIndexContract.run(blockchainSim, fundInfo1)
+    val fundAssetsBox = CreateIndexContract.run(blockchainSim)
+
+    //BuyTokenContract.run(blockchainSim, fundAssetsBox)
 
     // Object of token info (defined in R5)
 
@@ -60,7 +60,6 @@ object Main {
 
     // R6: a map of token/coin tickers and an object containing info about the token/coin
     // TODO: Write API call for token info data + map out defining manager instructions for setting object fields
-
 
     // R8: a map of guard scripts for each transaction type
     //var guardScripts: scala.collection.Map[String, String] = Map("buy" -> buyTokenScript, "sell" -> sellTokenScript, "joinInvestor" -> joinInvestorScript, "liqInvestor" -> liqInvestorScript, "updateSettings" -> updateSettingsScript)

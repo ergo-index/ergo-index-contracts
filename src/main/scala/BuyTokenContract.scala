@@ -1,4 +1,5 @@
 /*import org.ergoplatform.playground.{Box, R5, Transaction}
+import org.ergoplatform.{ErgoBox, ErgoBoxCandidate, Pay2SAddress}
 import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
 import org.ergoplatform.compiler.ErgoScalaCompiler._
 import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
@@ -12,14 +13,14 @@ import scala.language.postfixOps
 import sigmastate.eval.SigmaDsl
 
 object BuyTokenContract {
-  def run(blockchainSim: BlockchainSimulation): Unit = {
+  def run(blockchainSim: BlockchainSimulation, fundPoolBox: ErgoBox): Unit = {
     ///////////////////////////////////////////////////////////////////////////////////
     // Buy Token Transaction //
     ///////////////////////////////////////////////////////////////////////////////////
     // Every created "buy token" box has 1 input box (the pooled fund box) and produces 2 output boxes
     // (one being being a UTXO holding the newly-purchased token & the other being the recursed pooled-fund box)
 
-    // buyTokenScript will lock the pooled fund box from being spent unelss the following are true:
+    // buyTokenScript will lock the pooled fund box from being spent unless the following are true:
     //     1) Ring signature provided, and many, many more
     val buyTokenScript =
     s"""
@@ -54,9 +55,9 @@ object BuyTokenContract {
     println("-----------")
     //fundFounder.printUnspentAssets()
 
-    //var immutableMap: Map[org.ergoplatform.playgroundenv.models.Address, Long] = Map(fundFounderAddress -> fundFounderBal, address1 -> 100000000L, address2 -> 200000000L)
+    var immutableMap: Map[Address, Long] = Map(fundPoolBox.additionalRegisters.get(4). -> fundFounderBal, address1 -> 100000000L, address2 -> 200000000L)
 
-    def getNAV(immutableMap: Map[org.ergoplatform.playgroundenv.models.Address, Long]): Long = {
+    def getNAV(immutableMap: Map[Address, Long]): Long = {
       val nav: Long = 0L
       val i = immutableMap.toIterator
       //immutableMap.keys.foreach { i ->
@@ -73,18 +74,18 @@ object BuyTokenContract {
       script = buyTokenContract // originally had as sellTokenContract
     )
 
-    val buyTokenTransaction = Transaction(
+    /*val buyTokenTransaction = Transaction(
       inputs = fundFounder.selectUnspentBoxes(toSpend = fundFounderBal),
       outputs = List(buyOutput),
       fee = 1000000L,
       sendChangeTo = fundFounder.wallet.getAddress
-    )
+    )*/
 
-    val buyTokenTransactionSigned = fundFounder.wallet.sign(buyTokenTransaction)
+    //val buyTokenTransactionSigned = fundFounder.wallet.sign(buyTokenTransaction)
 
     // Submit the tx to the simulated blockchain
-    blockchainSim.send(buyTokenTransactionSigned)
-    fundFounder.printUnspentAssets()
+    //blockchainSim.send(buyTokenTransactionSigned)
+    //fundFounder.printUnspentAssets()
     println("-----------")
 
   }

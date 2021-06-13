@@ -1,18 +1,19 @@
 import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
 import org.ergoplatform.playground._
-import org.ergoplatform.{ErgoBoxCandidate, Pay2SAddress}
+import org.ergoplatform.{ErgoBox, ErgoBoxCandidate, Pay2SAddress}
+
 import scala.language.postfixOps
 import org.ergoplatform.playgroundenv.models.BlockchainSimulation
-
-import Main.Main
+import sigmastate.eval.SigmaDsl
 
 object CreateIndexContract {
-  def run(blockchainSim: BlockchainSimulation, fundInfo: fundInfo): ErgoBoxCandidate = {
+  def run(blockchainSim: BlockchainSimulation): ErgoBox = {
     println("STARTING CREATE INDEX TX")
 
     val fundFounder = blockchainSim.newParty("fundFounder") // fundFounder's wallet would, in theory, be initialized before the fund's creation
     val fundFounderBal = 200000000000L
     val fundFounderAddress = fundFounder.wallet.getAddress
+    val rawA = SigmaDsl.GroupElement(fundFounderAddress.proveDlog.value)
     fundFounder.generateUnspentBoxes(toSpend = fundFounderBal) // generating unspent UTXO boxes
 
     ///////////////////////////////////////////////////////////////////////////////////
@@ -29,32 +30,37 @@ object CreateIndexContract {
     //     4) If the output's guard script == "buy" then Output(1).value == (NAV / R6["Token"].targetNAV) * 100
     //     5) If the output's guard script == "buy" || "sell" then:
     //        a) Check that the target buy/sell price is within 1% of the target buy/sell price
+    val x = 4
     val fundingScript =
     s"""
   {
   1
   }
 """.stripMargin
-
-    val fundingContract = ErgoScriptCompiler.compile(Map("founderPk" -> fundFounderAddress.pubKey), fundingScript)
-
+    val fundingContract = ErgoScriptCompiler.compile(Map(), fundingScript)
     val fundAssetsBox = Box(value = fundFounderBal - MinTxFee,
-      registers = Map(), // R4 -> nft, R5 -> pks, R6 -> tokensData, R7 -> utxos, R8 -> guardScripts
+      register = R4 -> 1, // R4 -> nft, R5 -> pks, R6 -> tokensData, R7 -> utxos, R8 -> guardScripts
       script = fundingContract
     )
 
+    println(fundAssetsBox)
+
     val createIndexTx = Transaction(
-      inputs = fundFounder.selectUnspentBoxes(toSpend = fundFounderBal / 100),
+      inputs = fundFounder.selectUnspentBoxes(toSpend = fundFounderBal - MinTxFee),
       outputs = List(fundAssetsBox),
       fee = MinTxFee,
       sendChangeTo = fundFounderAddress
     )
 
     val createIndexTxSigned = fundFounder.wallet.sign(createIndexTx)
+    //println(createIndexTxSigned.outputs(0))
     blockchainSim.send(createIndexTxSigned)
     fundFounder.printUnspentAssets()
+    //println(fundAssetsBox.get(R4))
 
+    println(createIndexTxSigned.outputs(0))
     println("ENDING CREATE INDEX TX")
-    fundAssetsBox
+    println(createIndexTxSigned.outputs(0).additionalRegisters)
+    createIndexTxSigned.outputs(0)
   }
 }
