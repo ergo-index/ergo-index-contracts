@@ -1,6 +1,6 @@
 package registers
 
-import org.ergoplatform.playground.Coll
+/*import org.ergoplatform.playground.Coll
 import sigmastate.verified.Coll
 
 /**
@@ -17,4 +17,4 @@ object RegisterUtil {
   def deserializeMap(coll: Coll[Array[Byte]]): Map[AnyRef, AnyRef] = {
     Map()
   }
-}
+}*/

@@ -1,11 +1,14 @@
 package contracts
 
+import org.ergoplatform.ErgoLikeTransaction
 import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
+import org.ergoplatform.playground._
 import org.ergoplatform.playgroundenv.models.BlockchainSimulation
+
 import scala.language.postfixOps
 
 object JoinInvestorContract {
-  def run(blockchainSim: BlockchainSimulation): Unit = {
+  def run(newParty: Party, blockchainSim: BlockchainSimulation): ErgoLikeTransaction = {
     ///////////////////////////////////////////////////////////////////////////////////
     // Investor Join Transaction //
     ///////////////////////////////////////////////////////////////////////////////////

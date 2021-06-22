@@ -1,6 +1,8 @@
 import contracts.CreateFundContract
+import org.ergoplatform.ErgoBox
 import org.ergoplatform.playground._
 import org.ergoplatform.playgroundenv.models.TokenInfo
+import org.ergoplatform.compiler.ErgoScalaCompiler._
 
 import scala.language.postfixOps
 
@@ -137,12 +139,12 @@ object Main {
     val fundFounder = blockchainSim.newParty("fundFounder")
 
     // Simulate the fund owner creating the fund, which will generate the core state UTXO (this only happens once)
-    CreateFundContract.run(fundFounder, blockchainSim)
+    val createFundTx = CreateFundContract.run(fundFounder, blockchainSim)
 
     // Class that holds all fund data/info & passes object around classes.
     // Attempting to pass solely the info each box needs to verify transactions
     // rather than passing entire maps
-    class fundInfo(tokenInfo: TokenInfo) {
+    /*class fundInfo(tokenInfo: TokenInfo) {
 
       // R4: an NFT to ensure uniqueness from other core UTXO's
       var nft = TokenInfo
@@ -164,15 +166,14 @@ object Main {
         var sellTarget: Double = sellTarget1
       }
     }
+     */
 
-    val nft = blockchainSim.newToken("nft")
-
-    val fundInfo1 = new fundInfo(nft)
-
-
+    // Adding an investor to the fund
+    val investor1 = blockchainSim.newParty("investor1")
+    val joinedInvestorTx = JoinInvestorContract.run(investor1, blockchainSim)
 
     //Initiating the CreateIndexContract with the fund's founder
-    val fundAssetsBox = CreateFundContract.run(blockchainSim)
+    //val fundAssetsBox = CreateFundContract.run(blockchainSim)
 
     //BuyTokenContract.run(blockchainSim, fundAssetsBox)
 

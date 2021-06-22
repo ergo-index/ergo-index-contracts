@@ -1,12 +1,11 @@
 package contracts
 
-import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
+import org.ergoplatform.ErgoLikeTransaction
 import org.ergoplatform.playground._
-import org.ergoplatform.{ErgoBox, ErgoBoxCandidate, Pay2SAddress}
+import org.ergoplatform.playgroundenv.models.BlockchainSimulation
+import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
 
 import scala.language.postfixOps
-import org.ergoplatform.playgroundenv.models.BlockchainSimulation
-import sigmastate.eval.SigmaDsl
 
 object CreateFundContract {
 
@@ -16,14 +15,13 @@ object CreateFundContract {
    * @param blockchainSim the simulation to run in
    * @return the core state UTXO
    */
-  def run(fundFounder: Party, blockchainSim: BlockchainSimulation): ErgoBox = {
+  def run(fundFounder: Party, blockchainSim: BlockchainSimulation): ErgoLikeTransaction = { // Unit should = ErgoBox
     println("==================================================")
     println("=== RUNNING TX: CREATE INDEX ===")
     println("==================================================")
 
-    val fundFounderBal = 200000000000L
+    val fundFounderBal = 1000000000L
     val fundFounderAddress = fundFounder.wallet.getAddress
-    val rawA = SigmaDsl.GroupElement(fundFounderAddress.proveDlog.value)
     fundFounder.generateUnspentBoxes(toSpend = fundFounderBal) // generating unspent UTXO boxes
 
     ///////////////////////////////////////////////////////////////////////////////////
@@ -44,12 +42,15 @@ object CreateFundContract {
     val fundingScript =
       s"""
   {
-  1
+  if (OUTPUTS(0).propositionBytes == pk.propBytes) {
+    true
+  } else { false }
   }
 """.stripMargin
-    val fundingContract = ErgoScriptCompiler.compile(Map(), fundingScript)
-    val fundAssetsBox = Box(value = fundFounderBal - MinTxFee,
-      register = R4 -> 1, // R4 -> nft, R5 -> pks, R6 -> tokensData, R7 -> utxos, R8 -> guardScripts
+    val fundingContract = ErgoScriptCompiler.compile(Map("pk" -> fundFounderAddress.pubKey), fundingScript)
+    val fundAssetsBox = Box(
+      value = fundFounderBal - MinTxFee,
+      registers = Map(R4 -> 1, R5 -> fundFounder.wallet.getAddress.pubKey), // R4 -> nft, R5 -> pks, R6 -> tokensData, R7 -> utxos, R8 -> guardScripts
       script = fundingContract
     )
 
@@ -63,14 +64,12 @@ object CreateFundContract {
     )
 
     val createIndexTxSigned = fundFounder.wallet.sign(createIndexTx)
-    //println(createIndexTxSigned.outputs(0))
     blockchainSim.send(createIndexTxSigned)
     fundFounder.printUnspentAssets()
-    //println(fundAssetsBox.get(R4))
 
     println(createIndexTxSigned.outputs(0))
     println("ENDING CREATE INDEX TX")
-    println(createIndexTxSigned.outputs(0).additionalRegisters)
-    createIndexTxSigned.outputs(0)
+    //println(createIndexTxSigned.outputs(0).additionalRegisters)
+    createIndexTxSigned
   }
 }

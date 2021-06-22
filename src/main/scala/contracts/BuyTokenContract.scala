@@ -1,18 +1,12 @@
-package contracts
+/*package contracts
 
-/*import org.ergoplatform.playground.{Box, R5, Transaction}
-import org.ergoplatform.{ErgoBox, ErgoBoxCandidate, Pay2SAddress}
-import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
-import org.ergoplatform.compiler.ErgoScalaCompiler._
-import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
-import org.ergoplatform.playground._
-import org.ergoplatform.Pay2SAddress
+import org.ergoplatform.ErgoBox
+import org.ergoplatform.ErgoBox.R3
+import org.ergoplatform.playground.{Box, R5, _}
 import org.ergoplatform.playgroundenv.models.BlockchainSimulation
-import sigmastate.eval.Extensions._
-import scorex.crypto.hash.Blake2b256
+import org.ergoplatform.playgroundenv.utils.ErgoScriptCompiler
 //import scala.collection.mutable.Map
 import scala.language.postfixOps
-import sigmastate.eval.SigmaDsl
 
 object BuyTokenContract {
   def run(blockchainSim: BlockchainSimulation, fundPoolBox: ErgoBox): Unit = {
@@ -34,38 +28,23 @@ object BuyTokenContract {
     //val buyTokenContract = ErgoScriptCompiler.compile(Map("founderPk" -> fundFounderAddress.pubKey), buyTokenScript)
     val buyTokenContract = ErgoScriptCompiler.compile(Map(), buyTokenScript)
 
-
     val tokenPrice: Long = 10000000 / 2
-
-
-    // This function will loop through pks, find the first investor that has enough funds to purchase the
-    /*def  purchaseToken(tokenPrice: Long, pks: Map[org.ergoplatform.playgroundenv.models.Address, Long]) : scala.collection.immutable.Map[org.ergoplatform.playgroundenv.models.Address, Long] = {
-    var tokensData: Map[org.ergoplatform.playgroundenv.models.Address, Long] = Map()
-    pks.keys.foreach{ i =>
-      print("Key = " + i)
-      println(" Value = " + pks(i))
-      //tokensData += i -> pks(i)
-      //tokensData.map(kv => (kv._1,kv._2.toSet)).toMap
-    }
-    //var immMap: scala.collection.immutable.Map[org.ergoplatform.playgroundenv.models.Address, Long] = Map())
-      //printf("key: %s, value: %s\n", k, v)
-      //if(v >= tokenPrice)
-        var tokensData1: Map[org.ergoplatform.playgroundenv.models.Address, Long] = Map(fundFounderAddress -> fundFounderBal, address1 -> 10000000L, address2 -> 20000000L)
-   return tokensData1
-}*/
 
     println("-----------")
     //fundFounder.printUnspentAssets()
 
-    var immutableMap: Map[Address, Long] = Map(fundPoolBox.additionalRegisters.get(4). -> fundFounderBal, address1 -> 100000000L, address2 -> 200000000L)
+    val fakeFundAddress = blockchainSim.newParty("fakeFundAddress").wallet.getAddress
+    val address1 = blockchainSim.newParty("address1").wallet.getAddress
+    val address2 = blockchainSim.newParty("address2").wallet.getAddress
+
+    var immutableMap: Map[Address, Long] = Map(fundPoolBox.get(R3).get -> 100000000L, address1 -> 100000000L, address2 -> 200000000L)
 
     def getNAV(immutableMap: Map[Address, Long]): Long = {
-      val nav: Long = 0L
-      val i = immutableMap.toIterator
+      var nav: Long = 0L
       //immutableMap.keys.foreach { i ->
       for ((k, v) <- immutableMap)
-        nav += immutableMap.get(k)
-      return nav
+        nav += v
+      nav
     }
 
     val nav = getNAV(immutableMap)
@@ -91,4 +70,5 @@ object BuyTokenContract {
     println("-----------")
 
   }
-}*/
+}
+ */
